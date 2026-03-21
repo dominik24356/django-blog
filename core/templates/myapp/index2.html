@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="detail-container fade-in">
+
+    <!-- IMAGE HERO -->
+    <div class="detail-image">
+        {% if product.image %}
+            <img src="{{ product.image.url }}">
+        {% else %}
+            <img src="https://via.placeholder.com/800x400">
+        {% endif %}
+        <div class="image-overlay"></div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="detail-content">
+
+        <h1 class="detail-title">{{ product.name }}</h1>
+
+        <p class="detail-meta">
+            Dodano: {{ product.created_at|date:"d.m.Y H:i" }}
+        </p>
+
+        <div class="detail-description">
+            {{ product.description }}
+        </div>
+
+        <!-- ACTIONS -->
+        <div class="detail-actions">
+            <a href="{% url 'product_list' %}" class="btn btn-secondary">← Powrót</a>
+            <a href="{% url 'edit_product' product.id %}" class="btn btn-warning">Edytuj</a>
+            <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">Usuń</a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

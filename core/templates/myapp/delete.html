@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+
+        <div class="card p-4 shadow text-center">
+
+            <h3 class="mb-3 text-danger">⚠️ Usuwanie posta</h3>
+
+            <p>Czy na pewno chcesz usunąć:</p>
+            <h5 class="fw-bold">{{ product.name }}</h5>
+
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="img-fluid mb-3" style="max-height: 200px;">
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="d-flex justify-content-around mt-3">
+                    <a href="/" class="btn btn-secondary">Anuluj</a>
+                    <button type="submit" class="btn btn-danger">Usuń</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
