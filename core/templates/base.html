@@ -22,7 +22,7 @@
     <div class="container">
 
         <a class="navbar-brand" href="/">
-            🚀 Mój Blog
+            🛒 Mój Sklep
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -30,8 +30,8 @@
         </button>
 
         <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-            <a href="/create/" class="btn nav-btn">
-                <i class="bi bi-plus-lg"></i> Dodaj post
+            <a href="{% url 'cart' %}" class="btn nav-btn me-2">
+                🛒 Koszyk
             </a>
         </div>
 
@@ -39,6 +39,15 @@
 </nav>
 
 <div class="container main-container fade-in">
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+            <div class="alert alert-success fade-in">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     {% block content %}
     {% endblock %}
 </div>

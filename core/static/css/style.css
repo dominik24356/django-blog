@@ -323,3 +323,24 @@ body {
     transform: translateY(-5px);
     box-shadow: 0 40px 80px rgba(0,0,0,0.25);
 }
+
+/* === FORM INPUT BOOST === */
+input, select, textarea {
+    border-radius: 12px !important;
+    padding: 10px !important;
+    border: 1px solid #ddd !important;
+    transition: 0.25s;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #0d6efd !important;
+    box-shadow: 0 0 10px rgba(13,110,253,0.3);
+    outline: none;
+}
+
+/* CART ITEM HOVER */
+.card .row:hover {
+    background: rgba(13,110,253,0.05);
+    border-radius: 10px;
+    transition: 0.3s;
+}

@@ -23,15 +23,39 @@
             Dodano: {{ product.created_at|date:"d.m.Y H:i" }}
         </p>
 
+        <!-- 💰 CENA -->
+        <p class="fs-4"><strong>{{ product.price }} zł</strong></p>
+
+        <!-- 🏷️ KATEGORIA -->
+        <p>Kategoria: {{ product.category }}</p>
+
+        <!-- 📦 STAN -->
+        <p>
+            Dostępność:
+            {% if product.stock > 0 %}
+                <span class="text-success">✔ Na stanie ({{ product.stock }})</span>
+            {% else %}
+                <span class="text-danger">❌ Brak w magazynie</span>
+            {% endif %}
+        </p>
+
+        <!-- OPIS -->
         <div class="detail-description">
             {{ product.description }}
         </div>
 
         <!-- ACTIONS -->
-        <div class="detail-actions">
-            <a href="{% url 'product_list' %}" class="btn btn-secondary">← Powrót</a>
-            <a href="{% url 'edit_product' product.id %}" class="btn btn-warning">Edytuj</a>
-            <a href="{% url 'delete_product' product.id %}" class="btn btn-danger">Usuń</a>
+        <div class="detail-actions mt-3">
+
+            <a href="{% url 'product_list' %}" class="btn btn-secondary">
+                ← Powrót
+            </a>
+
+            <!-- 🛒 KOSZYK -->
+            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-success">
+                🛒 Dodaj do koszyka
+            </a>
+
         </div>
 
     </div>

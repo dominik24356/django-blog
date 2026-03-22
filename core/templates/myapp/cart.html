@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container fade-in">
+
+    <div class="header text-center">
+        <h1>🛒 Twój koszyk</h1>
+        <p>Sprawdź produkty przed zakupem</p>
+    </div>
+
+    {% if cart_items %}
+        <div class="card p-4 shadow-lg">
+
+            {% for item in cart_items %}
+                <div class="row align-items-center mb-4 border-bottom pb-3">
+
+                    <!-- NAZWA -->
+                    <div class="col-md-4">
+                        <h5 class="mb-1">{{ item.product.name }}</h5>
+                        <small class="text-muted">
+                            {{ item.product.price }} zł / szt
+                        </small>
+                    </div>
+
+                    <!-- ILOŚĆ -->
+                    <div class="col-md-2 text-center">
+                        <span class="badge bg-primary fs-6">
+                            {{ item.quantity }} szt
+                        </span>
+                    </div>
+
+                    <!-- SUBTOTAL -->
+                    <div class="col-md-3 text-center">
+                        <strong>{{ item.subtotal }} zł</strong>
+                    </div>
+
+                </div>
+            {% endfor %}
+
+            <!-- TOTAL -->
+            <div class="text-end mt-4">
+                <h3>Razem: <span class="text-success">{{ total }} zł</span></h3>
+            </div>
+
+            <!-- ACTIONS -->
+            <div class="d-flex justify-content-between mt-4">
+                <a href="{% url 'product_list' %}" class="btn btn-secondary">
+                    ← Kontynuuj zakupy
+                </a>
+
+                <button class="btn btn-success">
+                    💳 Przejdź do płatności
+                </button>
+            </div>
+
+        </div>
+
+    {% else %}
+        <div class="text-center mt-5">
+            <h4>😢 Koszyk jest pusty</h4>
+            <a href="{% url 'product_list' %}" class="btn btn-primary mt-3">
+                Przejdź do sklepu
+            </a>
+        </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}
